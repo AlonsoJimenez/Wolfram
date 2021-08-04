@@ -5,10 +5,7 @@ from matplotlib.animation import FuncAnimation
 import matplotlib.cm as cm
 
 
-N = 100
-ON = 255
-OFF = 0
-vals = [ON, OFF]
+
 def ruleCalculator(array):
     countLife = 0
     result = array.copy()
@@ -69,25 +66,22 @@ def createGliderGun():
 
 def updater(x):
     global grid
-    # copy grid since we require 8 neighbors for calculation
-    # and we go line by line 
     newGrid = grid.copy()
     for i in range(1, 99):
       for j in range(1, 99):
-          newGrid[i-1: i+2, j-1: j+2] = ruleCalculator(grid[i-1: i+2, j-1: j+2])
+          newGrid[i-1: i+2, j-1: j+2] = ruleCalculator(newGrid[i-1: i+2, j-1: j+2])
     mat.set_data(newGrid)
     grid = newGrid
     return [mat]
 
 
-grid = np.random.choice(vals, N*N, p=[0.2, 0.8]).reshape(N, N)
+grid = createGliderGun()
 fig, ax = plt.subplots()
 ax.axis('off')
 mat = ax.matshow(grid, cmap='Greys')
-ani = animation.FuncAnimation(fig,  updater, interval=10,save_count=50)
+ani = animation.FuncAnimation(fig,  updater, interval=10, save_count=50, frames=600)
+ani.save(filename='Game of Life')
 plt.show()
 
-
-    
 
 
