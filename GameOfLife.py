@@ -80,7 +80,6 @@ fig, ax = plt.subplots()
 ax.axis('off')
 mat = ax.matshow(grid, cmap='Greys')
 ani = animation.FuncAnimation(fig,  updater, interval=10, save_count=50, frames=600)
-ani.save(filename='Game of Life')
 plt.show()
 
 

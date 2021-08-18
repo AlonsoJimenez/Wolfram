@@ -39,9 +39,9 @@ def ruleCalculator(rule, array):
     return result
 
 def executeCA():
-    rule = int(input("number between 1-256"))
-    columns = int(input("colums"))
-    rows = int(input("rows"))
+    rule = int(input("Number between 0-256: "))
+    columns = int(input("Colums: "))
+    rows = int(input("Rows: "))
     rule = generateRulePattern(rule)
     mesh = createMesh(columns, rows)
     for row in range(rows-1):
